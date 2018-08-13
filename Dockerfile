@@ -17,6 +17,11 @@ RUN sudo apt-get update && sudo apt-get install libnss3-tools \
     mkdir -p $HOME/.pki/nssdb && \
     certutil -d $HOME/.pki/nssdb -N
 
+## This is to avoid click the OK button
+RUN mkdir -m 0750 /root/.android
+ADD docker/adb/insecure_shared_adbkey /root/.android/adbkey
+ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
+
 ENV PATH="/usr/local/bin:${PATH}"
 
 RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
@@ -29,11 +34,6 @@ RUN npm install --production
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
-
-## This is to avoid click the OK button
-RUN mkdir -m 0750 /root/.android
-ADD docker/adb/insecure_shared_adbkey /root/.android/adbkey
-ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/master/lib/tc.js
