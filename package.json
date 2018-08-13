@@ -83,6 +83,7 @@
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
     "fs-extra": "8.1.0",
+    "hot-shots": "^6.3.0",
     "influx": "5.5.1",
     "intel": "1.2.0",
     "jstransformer-markdown-it": "2.1.0",
