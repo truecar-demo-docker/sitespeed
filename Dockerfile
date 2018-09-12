@@ -40,5 +40,5 @@ COPY docker/scripts/start.sh /start.sh
 RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/sudoers.d/tc
 
 ENTRYPOINT ["/start.sh"]
-VOLUME /sitespeed.io
+run mkdir /sitespeed.io
 WORKDIR /sitespeed.io
