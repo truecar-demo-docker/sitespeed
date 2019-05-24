@@ -125,6 +125,7 @@ function runSitespeedio(){
     wait $PID
   }
 
+  set -- $(/bin/bash -c "echo $*") # Expand variables
   execNode --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO "$@" &
 
   PID=$!
