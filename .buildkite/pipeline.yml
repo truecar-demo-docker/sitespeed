@@ -17,13 +17,13 @@ steps:
     env:
       DOCKER_BUILDKIT: "1"
 
-  - wait: ~
+  # - wait: ~
 
-  - label: 'Upload to spacepods'
-    command: 'echo "I love spacepods"'
-    plugins:
-      - https://git.corp.tc/infra/spacepods-buildkite-plugin.git#v7:
-          component_name: ${BUILDKITE_PIPELINE_SLUG}
-          image_tag: ${IMAGE_TAG}
-    env:
-      SPACEPODS_API_TOKEN: 'ssm-parameter:/build/common/spacepods-api-token'
+  # - label: 'Upload to spacepods'
+  #   command: 'echo "I love spacepods"'
+  #   plugins:
+  #     - https://git.corp.tc/infra/spacepods-buildkite-plugin.git#v7:
+  #         component_name: ${BUILDKITE_PIPELINE_SLUG}
+  #         image_tag: ${IMAGE_TAG}
+  #   env:
+  #     SPACEPODS_API_TOKEN: 'ssm-parameter:/build/common/spacepods-api-token'
