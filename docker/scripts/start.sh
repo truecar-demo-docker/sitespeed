@@ -38,6 +38,7 @@ useradd --non-unique --uid $WORKDIR_UID --gid $WORKDIR_GID --home-dir /tmp sites
 export HOME=/tmp
 
 function execNode(){
+  echo "Executing $*"
   chroot --skip-chdir --userspec='sitespeedio:sitespeedio' / node "$@"
 }
 
