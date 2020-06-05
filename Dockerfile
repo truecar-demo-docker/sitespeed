@@ -4,7 +4,6 @@ ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO true
 ENV SITESPEED_IO_BROWSERTIME__visualMetrics true
-ENV SITESPEED_IO_PLUGINS__ADD /lighthouse,/gpsi
 
 COPY docker/webpagereplay/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
@@ -30,20 +29,11 @@ ENV PATH="/usr/local/bin:${PATH}"
 
 RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
 
-RUN mkdir /gpsi
-WORKDIR /gpsi
-RUN git clone https://github.com/sitespeedio/plugin-gpsi.git .
-RUN npm install --production
-
-RUN mkdir /lighthouse
-WORKDIR /lighthouse
-RUN git clone https://github.com/sitespeedio/plugin-lighthouse.git .
-RUN npm install --production
-
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
+RUN npm install sitespeedio/plugin-lighthouse
 RUN npm install --production
 COPY . /usr/src/app
 
